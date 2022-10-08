@@ -21,4 +21,14 @@ class CarNameTest {
             new CarName(name);
         }).hasMessageContaining(ErrorMessage.NAME_LENGTH_ERROR.getMessage());
     }
+
+    @Test
+    @DisplayName("이름이 같으면 같은객체")
+    void sameNameIsEqual(){
+        final String name = "name";
+        CarName cn1 = new CarName(name);
+        CarName cn2 = new CarName(name);
+
+        assertThat(cn1).isEqualTo(cn2);
+    }
 }
