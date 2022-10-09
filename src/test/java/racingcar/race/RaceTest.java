@@ -10,18 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class RaceTest {
 
 
-    private static RandomFactory factoryReturnUnder4;
     private static RandomFactory factoryReturnOver4;
 
     @BeforeAll
     public static void setMockFactory(){
-        factoryReturnUnder4 = new RandomFactory() {
-            @Override
-            public int makeRandomNumber() {
-                return 3;
-            }
-        };
-
         factoryReturnOver4 = new RandomFactory() {
             @Override
             public int makeRandomNumber() {
@@ -58,5 +50,19 @@ class RaceTest {
         assertThat(race.carPositions()).containsExactly(0, 0, 0);
     }
 
+    @Test
+    @DisplayName("moveCar 메서드 테스트 ( 이동후 리스트 출력 )")
+    void moveAfterReturnCars(){
+        Race race = new Race(factoryReturnOver4);
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Car car3 = new Car("car3");
+
+        race.join(car1);
+        race.join(car2);
+        race.join(car3);
+
+        assertThat(race.moveCars()).containsExactly(car1, car2, car3);
+    }
 
 }

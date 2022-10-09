@@ -4,7 +4,6 @@ import racingcar.car.Car;
 import racingcar.car.Cars;
 import racingcar.common.factory.RandomFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
@@ -27,7 +26,8 @@ public class Race {
         return this.cars.getPositions();
     }
 
-    public void moveCars() {
+    public List<Car> moveCars() {
         cars.moveCars(randomFactory);
+        return cars.carList();
     }
 }
