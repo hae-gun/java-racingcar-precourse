@@ -48,6 +48,6 @@ public class Car implements Comparable<Car>{
 
     @Override
     public String toString() {
-        return carName + " : " + StringFormat.positionToDash(position) ;
+        return carName + " : " + StringFormat.positionToDash(position.position()) ;
     }
 }
