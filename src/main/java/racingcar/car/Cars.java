@@ -4,6 +4,7 @@ import racingcar.common.exception.ErrorMessage;
 import racingcar.common.factory.RandomFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -50,5 +51,21 @@ public class Cars {
             names.add(cars.get(i).name());
         }
         return names;
+    }
+
+    public String winner() {
+        StringBuilder result = new StringBuilder();
+        Collections.sort(cars, Collections.reverseOrder());
+
+        Car first = cars.get(0);
+        List<String> winnerNames = new ArrayList<>();
+        winnerNames.add(first.name());
+
+        for(int i=1; i<cars.size(); i++){
+            if(first.compareTo(cars.get(i)) == 0){
+                winnerNames.add(cars.get(i).name());
+            }
+        }
+        return String.join(",", winnerNames);
     }
 }
