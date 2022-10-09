@@ -8,6 +8,6 @@ public class Output {
         System.out.println();
     }
     public static void print(Object obj){
-        System.out.println(obj);
+        System.out.print(obj);
     }
 }
