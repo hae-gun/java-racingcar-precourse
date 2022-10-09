@@ -41,4 +41,15 @@ class CarTest {
 
         assertThat(car1).isEqualTo(car2);
     }
+
+    @Test
+    @DisplayName("자동차 비교조건 추가 (포지션이 높은 차가 더 큼)")
+    void testCompareTo(){
+        Car car1 = new Car("car1");
+        car1.move();
+        Car car2 = new Car("car2");
+
+        assertThat(car1).isGreaterThan(car2);
+        assertThat(car2).isLessThan(car1);
+    }
 }
