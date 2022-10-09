@@ -123,33 +123,36 @@ class CarsTest {
     @DisplayName("winner 선정 (현재 포지션이 가장 큰사람 이름 출력)")
     void getWinner(){
         Car car1 = new Car("car1");
-        car1.move();
-        car1.move();
         Car car2 = new Car("car2");
+        moveCar(car2, 3);
         Car car3 = new Car("car3");
 
         cars.addCars(car1);
         cars.addCars(car2);
         cars.addCars(car3);
 
-        assertThat(cars.winner()).isEqualTo("car1");
+        assertThat(cars.winner()).isEqualTo("car2");
     }
 
     @Test
     @DisplayName("winner 선정 (여려명일때 여려명 출력)")
     void getWinners(){
         Car car1 = new Car("car1");
-        car1.move();
-        car1.move();
+        moveCar(car1, 2);
         Car car2 = new Car("car2");
-        car2.move();
-        car2.move();
+        moveCar(car2, 3);
         Car car3 = new Car("car3");
+        moveCar(car3, 3);
 
         cars.addCars(car1);
         cars.addCars(car2);
         cars.addCars(car3);
 
-        assertThat(cars.winner()).isEqualTo("car1,car2");
+        assertThat(cars.winner()).isEqualTo("car2,car3");
+    }
+    private void moveCar(Car car,int move){
+        while(move-- > 0){
+            car.move();
+        }
     }
 }
