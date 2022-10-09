@@ -2,6 +2,8 @@ package racingcar.car;
 
 import racingcar.car.value.CarName;
 import racingcar.car.value.Position;
+import racingcar.common.util.Output;
+import racingcar.common.util.StringFormat;
 
 import java.util.Objects;
 
@@ -42,5 +44,10 @@ public class Car implements Comparable<Car>{
     @Override
     public int compareTo(Car o) {
         return this.position() - o.position();
+    }
+
+    @Override
+    public String toString() {
+        return carName + " : " + StringFormat.positionToDash(position) ;
     }
 }
