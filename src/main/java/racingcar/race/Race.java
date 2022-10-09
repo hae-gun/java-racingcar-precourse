@@ -4,6 +4,8 @@ import racingcar.car.Car;
 import racingcar.car.Cars;
 import racingcar.common.factory.RandomFactory;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Race {
@@ -29,5 +31,9 @@ public class Race {
     public List<Car> moveCars() {
         cars.moveCars(randomFactory);
         return cars.carList();
+    }
+
+    public String winnerName() {
+        return cars.winner();
     }
 }
