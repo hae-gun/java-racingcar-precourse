@@ -119,4 +119,37 @@ class CarsTest {
         assertThat(cars.getPositions()).containsExactly(0, 0);
     }
 
+    @Test
+    @DisplayName("winner 선정 (현재 포지션이 가장 큰사람 이름 출력)")
+    void getWinner(){
+        Car car1 = new Car("car1");
+        car1.move();
+        car1.move();
+        Car car2 = new Car("car2");
+        Car car3 = new Car("car3");
+
+        cars.addCars(car1);
+        cars.addCars(car2);
+        cars.addCars(car3);
+
+        assertThat(cars.winner()).isEqualTo("car1");
+    }
+
+    @Test
+    @DisplayName("winner 선정 (여려명일때 여려명 출력)")
+    void getWinners(){
+        Car car1 = new Car("car1");
+        car1.move();
+        car1.move();
+        Car car2 = new Car("car2");
+        car2.move();
+        car2.move();
+        Car car3 = new Car("car3");
+
+        cars.addCars(car1);
+        cars.addCars(car2);
+        cars.addCars(car3);
+
+        assertThat(cars.winner()).isEqualTo("car1,car2");
+    }
 }
