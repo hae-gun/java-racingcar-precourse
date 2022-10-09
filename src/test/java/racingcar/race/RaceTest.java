@@ -41,7 +41,7 @@ class RaceTest {
         race.join(car1);
         race.join(car2);
         race.join(car3);
-        assertThat(race.joinUserList()).containsExactly("car1","car2","car3");
+        assertThat(race.carNames()).containsExactly("car1","car2","car3");
     }
 
     @Test
@@ -58,33 +58,5 @@ class RaceTest {
         assertThat(race.carPositions()).containsExactly(0, 0, 0);
     }
 
-    @Test
-    @DisplayName("랜덤수 숫자 4 이상일때 자동차 전진")
-    void moveCarIfRandomNumberOver4(){
-        Race race = new Race(factoryReturnOver4);
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
 
-        race.join(car1);
-        race.join(car2);
-
-        assertThat(race.carPositions()).containsExactly(0, 0);
-        race.moveCars();
-        assertThat(race.carPositions()).containsExactly(1, 1);
-    }
-
-    @Test
-    @DisplayName("랜덤수 숫자 4 미만일때 자동차 전진")
-    void moveCarIfRandomNumberUnder4(){
-        Race race = new Race(factoryReturnUnder4);
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-
-        race.join(car1);
-        race.join(car2);
-
-        assertThat(race.carPositions()).containsExactly(0, 0);
-        race.moveCars();
-        assertThat(race.carPositions()).containsExactly(0, 0);
-    }
 }

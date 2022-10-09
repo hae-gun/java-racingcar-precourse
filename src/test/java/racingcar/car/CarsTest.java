@@ -2,6 +2,8 @@ package racingcar.car;
 
 import org.junit.jupiter.api.*;
 import racingcar.common.exception.ErrorMessage;
+import racingcar.common.factory.RandomFactory;
+import racingcar.race.Race;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -37,6 +39,21 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("Cars 내부 자동차 상태 확인 메서드 테스트")
+    void checkCarsStatus(){
+        Car car1 = new Car("1");
+        Car car2 = new Car("2");
+        Car car3 = new Car("3");
+
+        cars.addCars(car1);
+        cars.addCars(car2);
+        cars.addCars(car3);
+
+        assertThat(cars.getNames()).containsExactly("1", "2", "3");
+        assertThat(cars.getPositions()).containsExactly(0, 0, 0);
+    }
+
+    @Test
     @DisplayName("동일한 객체가 리스트에 들어오면 에러발생")
     void canNotAddSameCar(){
         Car car1 = new Car("car1");
@@ -59,4 +76,47 @@ class CarsTest {
 
         assertThat(cars.carList().size()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("랜덤수 숫자 4 이상일때 자동차 전진")
+    void moveCarIfRandomNumberOver4(){
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+
+        RandomFactory factoryReturnOver4 = new RandomFactory() {
+            @Override
+            public int makeRandomNumber() {
+                return 5;
+            }
+        };
+
+        cars.addCars(car1);
+        cars.addCars(car2);
+
+        assertThat(cars.getPositions()).containsExactly(0, 0);
+        cars.moveCars(factoryReturnOver4);
+        assertThat(cars.getPositions()).containsExactly(1, 1);
+    }
+
+    @Test
+    @DisplayName("랜덤수 숫자 4 미만일때 자동차 전진 안함.")
+    void moveCarIfRandomNumberUnder4(){
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+
+        RandomFactory factoryReturnUnder4 = new RandomFactory() {
+            @Override
+            public int makeRandomNumber() {
+                return 3;
+            }
+        };
+
+        cars.addCars(car1);
+        cars.addCars(car2);
+
+        assertThat(cars.getPositions()).containsExactly(0, 0);
+        cars.moveCars(factoryReturnUnder4);
+        assertThat(cars.getPositions()).containsExactly(0, 0);
+    }
+
 }
