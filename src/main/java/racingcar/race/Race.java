@@ -28,6 +28,6 @@ public class Race {
     }
 
     public void moveCars() {
-
+        cars.moveCars(randomFactory);
     }
 }
