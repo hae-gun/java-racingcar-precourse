@@ -17,6 +17,15 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("초기값 설정 테스트")
+    void initValueTest(){
+        String name = "car1";
+        Car car = new Car(name);
+        assertThat(car.name()).isEqualTo(name);
+        assertThat(car.position()).isEqualTo(0);
+    }
+
+    @Test
     @DisplayName("move 함수를 통해 포지션 이동")
     void moveCar(){
         Car car = new Car("car");
